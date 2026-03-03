@@ -98,6 +98,33 @@
         background:yellow;
         color:blue;
       }
+      .modal{
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.6);
+        justify-content:center;
+        align-items:center;
+        z-index:1000;
+      }
+      .modal-content{
+        background:blue;
+        color:yellow;
+        padding:30px;
+        width:400px;
+        text-align:center;
+        position:relative;
+      }
+      .close-btn{
+        position:absolute;
+        top:10px;
+        right:15px;
+        font-size:25px;
+        cursor:pointer;
+      }
       </style>
     </head>
   <body>
@@ -126,9 +153,10 @@
         </div>
         <div class="box tiny">DISCORD</div>
         <div class="box tiny">X</div>
-        <div class="box tiny">REDDIT</div>
+        <div class="box tiny" onclick="openReddit()">REDDIT</div>
       </div>
     </div>
+    
     <script>
       function toggleLanguage(){
         const list = document.getElementById("languageList");
@@ -143,6 +171,18 @@
       }
       const newPath = "/" + parts.join("/");
         window.location.href = newPath;
+      }
+      function openReddit(){
+        document.getElementById("redditModal").style.display = "flex";
+      }
+      function closeReddit(){
+        document.getElementById("redditModal").style.display = "none";
+      }
+      window.onclick = function(event){
+        const modal = document.getElementById("redditModal");
+        if(event.target === modal){
+          modal.style.display = "none";
+        }
       }
     </script>
   </body>
