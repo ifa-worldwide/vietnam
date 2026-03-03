@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hội Việt Nam Tự do</title>
-<style>
-    body{
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/vfra.png">
+    <title>Hội Việt Nam Tự do</title>
+    <style>
+      body{
         margin:0;
         background:#9c4ca0;
         font-family: serif;
-    }
-    .header{
+      }
+      .header{
         height:75px;
         background:#9c4ca0;
         display:flex;
@@ -18,34 +19,33 @@
         justify-content:space-between;
         padding:0 25px;
         border-bottom:5px solid blue;
-    }
-    .left-header{
+      }
+      .left-header{
         display:flex;
         align-items:center;
         gap:25px;
-    }
-    .circle{
+      }
+      .circle{
         width:50px;
         height:50px;
         border-radius:50%;
-    }
-    .red{ background:red; }
-    .yellow{ background:yellow; }
-    .logo{
+      }
+      .red{ background:red; }
+      .yellow{ background:yellow; }
+      .logo{
         font-size:25px;
         color:yellow;
         font-weight:bold;
-    }
-    .green{
+      }
+      .green{
         background:green;
-    }
-    .container{
+      }
+      .container{
         display:flex;
         gap:25px;
-        padding:25px;
-        
-    }
-    .box{
+        padding:25px;     
+      }
+      .box{
         background-color: blue;
         padding:25px;
         color:yellow;
@@ -54,29 +54,29 @@
         justify-content:center; 
         align-items:center;   
         text-align:center; 
-    }
-    .column{
+      }
+      .column{
         display:flex;
         flex-direction:column;
         gap:25px;
-    }
-    .big{
+      }
+      .big{
         height:425px;
         width:250px;
-    }
-    .medium{
+      }
+      .medium{
         height:175px;
         width:250px;
-    }
-    .tiny{
+      }
+      .tiny{
         height:50px;
         width:250px;
-    }
-    .language-box{
+      }
+      .language-box{
         position:relative;
         cursor:pointer;
-    }
-    .language-list{
+      }
+      .language-list{
         display:none;
         position:absolute;
         top:100%;
@@ -86,77 +86,64 @@
         border-top:5px solid yellow;
         flex-direction:column;
         z-index: 999;
-    }
-    .language-list a{
+      }
+      .language-list a{
         color:yellow;
         text-decoration:none;
         padding:10px;
         border-bottom:5px solid yellow;
         display:block;
-    }
-    .language-list a:hover{
+      }
+      .language-list a:hover{
         background:yellow;
         color:blue;
-    }
-</style>
-</head>
-<body>
+      }
+      </style>
+    </head>
+  <body>
     <div class="header">
-        <div class="left-header">
-            <div class="circle red"></div>
-            <div class="circle yellow"></div>
-            <div class="logo">HỘI VIỆT NAM TỰ DO</div>
-        </div>
-
-        <div class="circle green"></div>
+      <div class="left-header">
+        <div class="circle red"></div>
+        <div class="circle yellow"></div>
+        <div class="logo">HỘI VIỆT NAM TỰ DO</div>
+      </div>
+      <div class="circle green"></div>
     </div>
-
-    <!-- BODY -->
     <div class="container">
-
-        <!-- Forums -->
-        <div class="box big">DIỄN ĐÀN</div>
-
-        <!-- Chat -->
-        <div class="box big">TRÒ CHUYỆN</div>
-
-        <!-- History + News -->
-        <div class="column">
-            <div class="box medium">CHÍNH SỬ</div>
-            <div class="box medium">TIN TỨC</div>
+      <div class="box big">DIỄN ĐÀN</div>
+      <div class="box big">TRÒ CHUYỆN</div>
+      <div class="column">
+        <div class="box medium">CHÍNH SỬ</div>
+        <div class="box medium">TIN TỨC</div>
+      </div>
+      <div class="column">
+        <div class="box tiny language-box" onclick="toggleLanguage()">
+          NGÔN NGỮ
+          <div class="language-list" id="languageList">
+            <a onclick="changeLang('vietnam'); return false;">Tiếng Việt</a>
+            <a onclick="changeLang('iran'); return false;">فارسی</a>
+          </div>
         </div>
-
-        <!-- Right Column -->
-        <div class="column">
-            <div class="box tiny language-box" onclick="toggleLanguage()">
-                NGÔN NGỮ
-                <div class="language-list" id="languageList">
-                    <a onclick="changeLang('vietnam'); return false;">Tiếng Việt</a>
-                    <a onclick="changeLang('iran'); return false;">فارسی</a>
-                </div>
-            </div>
-            <div class="box tiny">DISCORD</div>
-            <div class="box tiny">X</div>
-            <div class="box tiny">REDDIT</div>
-        </div>
+        <div class="box tiny">DISCORD</div>
+        <div class="box tiny">X</div>
+        <div class="box tiny">REDDIT</div>
+      </div>
     </div>
     <script>
-        function toggleLanguage(){
-            const list = document.getElementById("languageList");
-            list.style.display =
-                list.style.display === "flex" ? "none" : "flex";
-        }
-        function changeLang(lang){
-            const path = window.location.pathname;
-            const parts = path.split("/").filter(Boolean);
-
-            if(parts.length >= 2){
-                parts[0] = lang;  
-            }
-
-            const newPath = "/" + parts.join("/");
-            window.location.href = newPath;
-        }
-        </script>
-</body>
+      function toggleLanguage(){
+        const list = document.getElementById("languageList");
+        list.style.display =
+          list.style.display === "flex" ? "none" : "flex";
+      }
+      function changeLang(lang){
+        const path = window.location.pathname;
+        const parts = path.split("/").filter(Boolean);
+        if(parts.length >= 2){
+          parts[0] = lang;  
+      }
+      const newPath = "/" + parts.join("/");
+        window.location.href = newPath;
+      }
+    </script>
+  </body>
 </html>
