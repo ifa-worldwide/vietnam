@@ -125,10 +125,7 @@
         font-size:25px;
         cursor:pointer;
       }
-            a,
-      a:visited,
-      a:hover,
-      a:active {
+      a:visited{
         color: yellow;
         text-decoration: none;
       }
@@ -163,7 +160,15 @@
         <div class="box tiny" onclick="openReddit()">REDDIT</div>
       </div>
     </div>
-    
+    <!-- Reddit Modal -->
+    <div id="redditModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeReddit()">×</span>
+        <h1>Hội Việt Nam Tự do không tồn tại trên Reddit như một subreddit riêng.</h1>
+        <p>Thay vào đó, các thành viên của Hội hoạt động trong:</p>
+        <a href="https://www.reddit.com/r/TroChuyenLinhTinh/" target="_blank">TroChuyenLinhTinh</a>
+      </div>
+    </div>
     <script>
       function toggleLanguage(){
         const list = document.getElementById("languageList");
