@@ -1,294 +1,66 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/vfra.png">
-    <title>Hội Việt Nam Tự do</title>
-    <style>
-      body{
-        margin:0;
-        background:#ff00ff;
-        font-family: serif;
-      }
-      .header{
-        height:75px;
-        background:#ff00ff;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        padding:0 25px;
-        border-bottom:5px solid blue;
-      }
-      .left-header{
-        display:flex;
-        align-items:center;
-        gap:25px;
-      }
-      .circle{
-        width:50px;
-        height:50px;
-        border-radius:50%;
-      }
-      .red{ background:red; }
-      .yellow{ background:yellow; }
-      .logo{
-        font-size:25px;
-        color:yellow;
-        font-weight:bold;
-      }
-      .green{
-        background:green;
-      }
-      .container{
-        display:flex;
-        gap:25px;
-        padding:25px;     
-      }
-      .box{
-        background-color: blue;
-        padding:25px;
-        color:yellow;
-        font-size:25px;
-        display:flex;            
-        justify-content:center; 
-        align-items:center;   
-        text-align:center; 
-      }
-      .column{
-        display:flex;
-        flex-direction:column;
-        gap:25px;
-      }
-      .big{
-        height:425px;
-        width:250px;
-      }
-      .medium{
-        height:175px;
-        width:250px;
-      }
-      .tiny{
-        height:50px;
-        width:250px;
-      }
-      .language-box{
-        position:relative;
-        cursor:pointer;
-      }
-      .language-list{
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        background:blue;
-        border-top:5px solid yellow;
-        flex-direction:column;
-        z-index: 999;
-      }
-      .language-list a{
-        color:yellow;
-        text-decoration:none;
-        padding:10px;
-        border-bottom:5px solid yellow;
-        display:block;
-      }
-      .language-list a:hover{
-        background:yellow;
-        color:blue;
-      }
-      .modal{
-        display:none;
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        background:rgba(0,0,0,0.6);
-        justify-content:center;
-        align-items:center;
-        z-index:1000;
-      }
-      .modal-content{
-        background:blue;
-        color:yellow;
-        padding:30px;
-        width:750px;
-        text-align:center;
-        position:relative;
-      }
-      .close-btn{
-        position:absolute;
-        top:10px;
-        right:15px;
-        font-size:25px;
-        cursor:pointer;
-      }
-      a,
-      a:visited{
-        color: yellow;
-        text-decoration: none;
-      }
-/* ===== LANGUAGE OVERLAY ===== */
-      .lang-overlay{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,0.5);
-        z-index:998;
-      }
-      @media (max-width: 768px){
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/vfra.png">
 
-        .container{
-          flex-direction: column;
-        }
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 
-        .column{
-          width:100%;
-        }
+  <title>Hội Việt Nam Tự do</title>
+</head>
+<body>
 
-        .box{
-          width:90% !important;
-        }
+  <div id="langOverlay" class="lang-overlay"></div>
 
-        .big,
-        .medium,
-        .tiny{
-          width:90%;
-          height:120px; /* chỉnh nếu muốn cao hơn */
-        }
-
-        .modal-content{
-          width:90%;
-        }
-        .language-list{
-          position:fixed;
-          left:0;
-          right:0;
-          bottom:-100%;
-          top:auto;
-          width:100%;
-          height:75vh;
-          border-top:8px solid yellow;
-          border-radius:20px 20px 0 0;
-          transition:bottom 0.3s ease;
-          padding-top:20px;
-        }
-        .language-list.show{
-          display:flex;
-          bottom:0;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="langOverlay" class="lang-overlay"></div>
-    <div class="header">
-      <div class="left-header">
-        <div class="circle red"></div>
-        <div class="circle yellow"></div>
-        <div class="logo">HỘI VIỆT NAM TỰ DO</div>
-      </div>
-      <div class="circle green"></div>
+  <div class="header">
+    <div class="left-header">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="logo">HỘI VIỆT NAM TỰ DO</div>
     </div>
-    <div class="container">
-      <div class="box big">DIỄN ĐÀN</div>
-      <div class="box big">TRÒ CHUYỆN</div>
-      <div class="column">
-        <div class="box medium">CHÍNH SỬ</div>
-        <div class="box medium">TIN TỨC</div>
-      </div>
-      <div class="column">
-        <div class="box tiny language-box" onclick="toggleLanguage()">
-          NGÔN NGỮ
-          <div class="language-list" id="languageList">
-            <a onclick="changeLang('vietnam'); return false;">Tiếng Việt</a>
-            <a onclick="changeLang('iran'); return false;">فارسی</a>
-          </div>
+    <div class="circle green"></div>
+  </div>
+
+  <div class="container">
+
+    <div class="box big">DIỄN ĐÀN</div>
+    <div class="box big">TRÒ CHUYỆN</div>
+
+    <div class="column">
+      <div class="box medium">CHÍNH SỬ</div>
+      <div class="box medium">TIN TỨC</div>
+    </div>
+
+    <div class="column">
+      <div class="box tiny language-box">
+        NGÔN NGỮ
+        <div class="language-list" id="languageList">
+          <a onclick="changeLang('vietnam'); return false;">Tiếng Việt</a>
+          <a onclick="changeLang('iran'); return false;">فارسی</a>
         </div>
-        <div class="box tiny">DISCORD</div>
-        <div class="box tiny">X</div>
-        <div class="box tiny" onclick="openReddit()">REDDIT</div>
       </div>
+      <div class="box tiny">DISCORD</div>
+      <div class="box tiny">X</div>
+      <div class="box tiny" id="redditBtn">REDDIT</div>
     </div>
-    <!-- Reddit Modal -->
-    <div id="redditModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeReddit()">×</span>
-        <h1>Hội Việt Nam Tự do không tồn tại trên Reddit như một subreddit riêng.</h1>
-        <p>Thay vào đó, các thành viên của Hội hoạt động trong:</p>
-        <a href="https://www.reddit.com/r/TroChuyenLinhTinh/" target="_blank">TroChuyenLinhTinh</a><br/>
-        <a href="https://www.reddit.com/r/VietNamNation/" target="_blank">Vietnam Nation - Đất nước Việt Nam</a>
-      </div>
+
+  </div>
+
+  <!-- Reddit Modal -->
+  <div id="redditModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h1>Hội Việt Nam Tự do không tồn tại trên Reddit như một subreddit riêng.</h1>
+      <p>Thay vào đó, các thành viên hoạt động trong:</p>
+      <a href="https://www.reddit.com/r/TroChuyenLinhTinh/" target="_blank">TroChuyenLinhTinh</a><br/>
+      <a href="https://www.reddit.com/r/VietNamNation/" target="_blank">Vietnam Nation - Đất nước Việt Nam</a>
     </div>
-    <script>
-      const langList = document.getElementById("languageList");
-      const langOverlay = document.getElementById("langOverlay");
+  </div>
 
-      function toggleLanguage(){
-        if(window.innerWidth <= 768){
-          openMobileLang();
-        }else{
-          openDesktopLang();
-        }
-      }
-
-      function openDesktopLang(){
-        if(langList.style.display === "flex"){
-          closeLanguage();
-        }else{
-          langList.style.display = "flex";
-          langOverlay.style.display = "block";
-        }
-      }
-
-      function openMobileLang(){
-        langOverlay.style.display = "block";
-        langList.classList.add("show");
-      }
-
-      function closeLanguage(){
-        langOverlay.style.display = "none";
-
-        if(window.innerWidth <= 768){
-          langList.classList.remove("show");
-        }else{
-          langList.style.display = "none";
-        }
-      }
-      function changeLang(lang){
-        const path = window.location.pathname;
-        const parts = path.split("/").filter(Boolean);
-        if(parts.length >= 2){
-          parts[0] = lang;  
-      }
-      const newPath = "/" + parts.join("/");
-        window.location.href = newPath;
-      }
-      function openReddit(){
-        document.getElementById("redditModal").style.display = "flex";
-      }
-      function closeReddit(){
-        document.getElementById("redditModal").style.display = "none";
-      }
-      window.onclick = function(event){
-        const modal = document.getElementById("redditModal");
-        if(event.target === modal){
-          modal.style.display = "none";
-        }
-      }
-      // Click overlay đóng
-      langOverlay.addEventListener("click", closeLanguage);
-
-// Click ngoài dropdown (desktop)
-      document.addEventListener("click", function(e){
-        const box = document.querySelector(".language-box");
-
-        if(!box.contains(e.target)){
-          closeLanguage();
-        }
-      });
-    </script>
-  </body>
+  <!-- JS -->
+  <script src="js/main.js"></script>
+</body>
 </html>
