@@ -130,6 +130,32 @@
         color: yellow;
         text-decoration: none;
       }
+      @media (max-width: 768px){
+
+        .container{
+          flex-direction: column;
+        }
+
+        .column{
+          width:100%;
+        }
+
+        .box{
+          width:100% !important;
+        }
+
+        .big,
+        .medium,
+        .tiny{
+          width:100%;
+          height:120px; /* chỉnh nếu muốn cao hơn */
+        }
+
+        .modal-content{
+          width:90%;
+        }
+
+      }
     </style>
   </head>
   <body>
