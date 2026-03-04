@@ -1,12 +1,11 @@
-// js/main.js
-
 import { initLanguage } from "./modules/language.js";
 import { initModal } from "./modules/modal.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  initLanguage();
+  console.log("JS Loaded");
 
+  initLanguage();
   initModal("redditModal", "redditBtn");
 
 });
