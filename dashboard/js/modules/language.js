@@ -2,7 +2,17 @@
 
 import { $, on, addClass, removeClass } from "../core/dom.js";
 
-export function initLanguage() {
+export function initLanguage(
+  const langLinks = langList.querySelectorAll("a[data-lang]");
+
+  langLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const lang = link.dataset.lang;
+      changeLang(lang);
+  });
+});
+) {
 
   const languageBox = $(".language-box");
   const langList = $("#languageList");
