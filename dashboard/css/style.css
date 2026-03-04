@@ -134,3 +134,15 @@ a, a:visited{
   font-size:25px;
   cursor:pointer;
 }
+
+.lang-overlay.active{
+  display:block;
+}
+
+.language-list.active{
+  display:flex;
+}
+
+.modal.active{
+  display:flex;
+}
