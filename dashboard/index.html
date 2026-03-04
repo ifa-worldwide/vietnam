@@ -130,6 +130,38 @@
         color: yellow;
         text-decoration: none;
       }
+/* ===== LANGUAGE OVERLAY ===== */
+      .lang-overlay{
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.5);
+        z-index:998;
+      }
+
+/* ===== MOBILE MODE ===== */
+@media (max-width:768px){
+
+  .language-list{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:-100%;
+    top:auto;
+    width:100%;
+    height:75vh;
+    border-top:8px solid yellow;
+    border-radius:20px 20px 0 0;
+    transition:bottom 0.3s ease;
+    padding-top:20px;
+  }
+
+  .language-list.show{
+    display:flex;
+    bottom:0;
+  }
+
+}
       @media (max-width: 768px){
 
         .container{
@@ -154,11 +186,28 @@
         .modal-content{
           width:90%;
         }
-
+        .language-list{
+          position:fixed;
+          left:0;
+          right:0;
+          bottom:-100%;
+          top:auto;
+          width:100%;
+          height:75vh;
+          border-top:8px solid yellow;
+          border-radius:20px 20px 0 0;
+          transition:bottom 0.3s ease;
+          padding-top:20px;
+        }
+        .language-list.show{
+          display:flex;
+          bottom:0;
+        }
       }
     </style>
   </head>
   <body>
+    <div id="langOverlay" class="lang-overlay"></div>
     <div class="header">
       <div class="left-header">
         <div class="circle red"></div>
@@ -197,10 +246,39 @@
       </div>
     </div>
     <script>
+      const langList = document.getElementById("languageList");
+      const langOverlay = document.getElementById("langOverlay");
+
       function toggleLanguage(){
-        const list = document.getElementById("languageList");
-        list.style.display =
-          list.style.display === "flex" ? "none" : "flex";
+        if(window.innerWidth <= 768){
+          openMobileLang();
+        }else{
+          openDesktopLang();
+        }
+      }
+
+      function openDesktopLang(){
+        if(langList.style.display === "flex"){
+          closeLanguage();
+        }else{
+          langList.style.display = "flex";
+          langOverlay.style.display = "block";
+        }
+      }
+
+      function openMobileLang(){
+        langOverlay.style.display = "block";
+        langList.classList.add("show");
+      }
+
+      function closeLanguage(){
+        langOverlay.style.display = "none";
+
+        if(window.innerWidth <= 768){
+          langList.classList.remove("show");
+        }else{
+          langList.style.display = "none";
+        }
       }
       function changeLang(lang){
         const path = window.location.pathname;
@@ -223,6 +301,17 @@
           modal.style.display = "none";
         }
       }
+      // Click overlay đóng
+      langOverlay.addEventListener("click", closeLanguage);
+
+// Click ngoài dropdown (desktop)
+      document.addEventListener("click", function(e){
+        const box = document.querySelector(".language-box");
+
+        if(!box.contains(e.target)){
+          closeLanguage();
+        }
+      });
     </script>
   </body>
 </html>
