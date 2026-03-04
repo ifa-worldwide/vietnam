@@ -148,3 +148,7 @@ a, a:visited{
 .modal.active{
   display:flex;
 }
+
+.logo-short{
+  display:none;
+}
