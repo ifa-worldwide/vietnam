@@ -41,4 +41,12 @@
     display:flex;
     bottom:0;
   }
+  
+  .logo-full{
+    display:none;
+  }
+
+  .logo-short{
+    display:inline;
+  }
 }
