@@ -134,7 +134,7 @@ a, a:visited{
   cursor:pointer;
 }
 .close-btn a{
-  margin-bottom:16px;
+  margin-bottom:25px;
 }
 
 .lang-overlay.active{
