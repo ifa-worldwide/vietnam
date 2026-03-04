@@ -2,17 +2,7 @@
 
 import { $, on, addClass, removeClass } from "../core/dom.js";
 
-export function initLanguage(
-  const langLinks = langList.querySelectorAll("a[data-lang]");
-
-  langLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const lang = link.dataset.lang;
-      changeLang(lang);
-  });
-});
-) {
+export function initLanguage() {
 
   const languageBox = $(".language-box");
   const langList = $("#languageList");
@@ -40,10 +30,15 @@ export function initLanguage(
 
   const toggle = (e) => {
     e.stopPropagation();
-    langList.classList.contains("active") ||
-    langList.classList.contains("show")
-      ? close()
-      : open();
+
+    if (
+      langList.classList.contains("active") ||
+      langList.classList.contains("show")
+    ) {
+      close();
+    } else {
+      open();
+    }
   };
 
   const changeLang = (lang) => {
@@ -51,14 +46,29 @@ export function initLanguage(
       .split("/")
       .filter(Boolean);
 
-    if (parts.length >= 1) {
-      parts[0] = lang;
+    if (parts.length === 0) {
+      window.location.href = "/" + lang + "/";
+      return;
     }
 
+    parts[0] = lang;
     window.location.href = "/" + parts.join("/");
   };
 
-  // Events
+  /* ===== Language Links ===== */
+
+  const langLinks = langList.querySelectorAll("a[data-lang]");
+
+  langLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const lang = link.dataset.lang;
+      changeLang(lang);
+    });
+  });
+
+  /* ===== Events ===== */
+
   on(languageBox, "click", toggle);
   on(overlay, "click", close);
 
@@ -68,6 +78,4 @@ export function initLanguage(
     }
   });
 
-  // Expose changeLang cho HTML nếu cần
-  window.changeLang = changeLang;
 }
